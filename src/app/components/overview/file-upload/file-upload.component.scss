@@ -1,0 +1,138 @@
+// /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+.container {
+  position: relative;
+}
+.header-content{
+  margin-top: 25px;
+}
+
+.header-title {
+font-family: "Inter";
+font-style: normal;
+font-weight: 600;
+font-size: 32px;
+line-height: 24px;
+color: #012d9e;
+}
+.header-tile2 {
+font-family: "Inter";
+font-style: normal;
+font-weight: 300;
+font-size: 15px;
+line-height: 24px;
+color: #4e4e4e;
+margin-top: 20px;
+}
+.drag-drop-text2 {
+font-family: "Roboto";
+font-style: normal;
+font-weight: 300;
+font-size: 15px;
+line-height: 150%;
+color: #4e4e4e;
+margin-top: -9px;
+}
+h1,
+h3,
+h4,
+h6 {
+text-align: center;
+}
+
+.drag-drop-text {
+font-family: "Roboto";
+font-style: normal;
+font-weight: 600;
+font-size: 24px;
+line-height: 150%;
+color: #000000;
+}
+
+.fileloadedview {
+width: 851px;
+height: 120px;
+background: #f1f2f2;
+border-radius: 16px;
+margin-top: 25px;
+//text-align: center;
+ margin-left: 153px;
+}
+
+.filename {
+margin-left: 75px;
+margin-top: -46px;
+margin-bottom: -35px;
+padding-left: 20px;
+}
+
+.fileimage {
+ margin-left: 30px;
+ margin-top: 32px;
+}
+
+.choose-file-upload-text {
+display: inline;
+position: relative;
+color: #012d9e;
+font-weight: 600;
+font-size: 24px;
+}
+.card-background {
+height: 381px;
+display: flex;
+align-items: center;
+justify-content: center;
+background: linear-gradient(90deg, #112d6b 5.9%, #3158aa 76.63%);
+}
+.drag-drop-card {
+width: 851px;
+height: 306px;
+background: #ffffff;
+border: 1px solid #ffffff;
+border-radius: 16px;
+margin-top: 36px ;
+}
+.upload-text {
+margin-top: 50px;
+}
+.upload-text h6 {
+margin-top: 20px;
+}
+
+.loadingpercent {
+margin-left: 802px;
+margin-top: -13px;
+}
+.progressbar {
+background: #089156;
+text-align: center;
+margin-left: 36px;
+margin-top: 47px;
+height: 6px;
+width: 633px;
+}
+
+.upload-section {
+position: relative;
+text-align: center;
+top: 50px;
+}
+
+.removefile {
+margin-left: 807px;
+margin-top: -13px;
+}
+
+.mat-card-content
+{
+border-top-left-radius: 16px; border-top-right-radius: 16px;background-color: #ffffff;
+}
+
+.mat-content{margin-top:38px;}
+
+.container-fluid .fileloadedview
+{
+align-self: center;
+align-content: center;
+}

@@ -1,0 +1,111 @@
+.img {
+    vertical-align: baseline;
+}
+
+.sidecontainer {
+    height: 100%;
+    background: white;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+
+    ul {
+        list-style-type: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        li {
+            padding-left: 0%;
+
+            a {
+                font-family: roboto;
+
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 24px;
+                color: #4E4E4E;
+                text-decoration: none;
+
+                &:hover {
+                    color: #012D9E;
+                }
+            }
+        }
+    }
+}
+
+.search-box {
+    display: flex;
+    position: relative;
+
+
+    .search-input {
+        background: #ffffff;
+        border: 1px solid #94a3b8;
+        border-radius: 8px;
+
+        &::placeholder {
+
+            font-family: inter;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 15px;
+            color: #94a3b8;
+        }
+    }
+
+    button {
+        position: absolute;
+
+        bottom: 0;
+        transform: translateY(-50%);
+    }
+}
+
+.searchbox {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 357px;
+    height: 30px;
+
+
+    background: #FFFFFF;
+    border-radius: 4px;
+}
+
+
+.buttons-class {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 177px;
+    height: 45px;
+    border-radius: 8px;
+
+}
+
+.mat-mdc-card-content {
+    background: #F9FBFC;
+}
+
+.matcard {
+    border-radius: 6px;
+    border: 1px solid #F9FBFC;
+}
+
+.tblheader{
+    background: #F9FBFC;
+}
+.active {
+    background-color: green;
+}
+
+.inactive {
+    background-color: red;
+}

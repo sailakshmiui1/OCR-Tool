@@ -1,0 +1,45 @@
+<mat-toolbar class="header-container">
+    <header class="header">
+      <div class="header-left">
+        <div class="logo">
+          <img src="assets\image\logo.png" alt="logo" />
+        </div>
+  
+        <form>
+          <div class="search-box">
+              <mat-icon class="search-icon" >search</mat-icon>
+            <input
+              class="search-input"
+              matInput
+              placeholder="Search in this guide"
+            />
+          </div>
+        </form>
+      </div>
+  
+      <div class="menu">
+        <ul>
+          <li><a mat-button routerLink="Menu1">Menu1</a></li>
+          <li><a mat-button routerLink="Menu2">Menu2</a></li>
+          <li><a mat-button routerLink="Menu3">Menu3</a></li>
+          <li>
+            <a class="divider" mat-button [matMenuTriggerFor]="dropdownMenu"
+             routerLink="My Profile" >My Profile</a
+            >
+            <mat-menu #dropdownMenu="matMenu">
+              <div class="main">
+              <button mat-menu-item class="dropdown-item">
+                <span class="dropdown-text"> Create User</span></button>
+              <button mat-menu-item>
+                <span class="dropdown-text"> Dashboard</span></button>
+              </div>
+            </mat-menu>
+          </li>
+        </ul>
+        <mat-divider [vertical]="true" style="height:40px"></mat-divider>
+        <div class="login">
+        <img src="assets/image/Face 37.png" alt="">
+        </div>
+      </div>
+    </header>
+  </mat-toolbar>

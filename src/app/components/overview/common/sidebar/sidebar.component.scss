@@ -1,0 +1,53 @@
+mat-sidenav-container {
+  height: 100vh;
+}
+
+.side-nav {
+  background: linear-gradient(360deg, #112d6b 32.54%, #3158aa 90.64%);
+  width: 268px;
+  height: 835px;
+}
+.nav-list-item {
+  display: flex;
+  align-items: center;
+}
+
+.nav-list {
+  margin: 40px 0 0 12px;
+}
+
+.nav-icon {
+  color: #e2e2e2;
+  vertical-align: middle;
+}
+.nav-list-item:hover {
+  background-color: #112d6b;
+}
+
+.nav-text {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  margin-left: 22px;
+  color: #e2e2e2;
+ 
+}
+.over-convrt {
+  margin-left: 23px;
+ 
+}
+.over-icon {
+  margin-left: 4px;
+}
+
+.setting-item {
+  position: relative;
+  cursor: pointer;
+}
+
+.arrow-icon {
+  position: absolute;
+  right: 28px;
+  color: #e2e2e2;
+}

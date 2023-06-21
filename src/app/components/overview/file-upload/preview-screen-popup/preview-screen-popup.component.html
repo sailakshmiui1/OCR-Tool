@@ -1,0 +1,77 @@
+<div class="container-fluid" style="overflow :hidden ;">
+  <div class="row">
+    <div class="col">      
+    </div>
+  </div>
+ <div class="container ">
+  <div class="row row-centered">
+    <div class="col col-lg-8 col-xs-12 col-centered">
+      <div class="cardContainer" [ngSwitch]="fileType">
+  <mat-card class="matCard">
+    <mat-card-header>
+      <div style="margin-left: -7px;" *ngIf="isActive">         
+        <mat-toolbar  class="header">
+          <div class="header-icons" (click)="onRotateRight($event)" >
+            <mat-icon class="icon">rotate_90_degrees_ccw</mat-icon>
+          </div>          
+          <!-- <div class="header-icons">
+            <div class="vertical-divider"></div>
+          </div>          -->
+          <div class="header-icons" (click)="onClickZoomIn($event)" #container>
+            <mat-icon class="icon">remove_circle_outline</mat-icon>
+          </div>
+          <div class="header-icons" (click)="onClickZoomOut($event)" #container>
+            <mat-icon class="icon">add_circle_outline</mat-icon>
+          </div>         
+        </mat-toolbar>      
+      </div>
+    </mat-card-header>
+    <mat-card-content class="viewerCard" >
+      
+<!-- Image Viewer-->
+
+  <img class="viewerControl"  *ngSwitchCase="'Image File'"  
+  src="https://i.natgeofe.com/n/d4492040-e42e-4c0b-9604-3b1ddea67f88/FInal-Submission_NJG_4x3.jpg" #img >
+
+
+<!-- PDF viewer -->
+<div *ngSwitchCase="'Microsoft Edge PDF Document'" >
+  <ngx-extended-pdf-viewer class="viewerControl" style="height: 40vh;" 
+   src="https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf">
+  </ngx-extended-pdf-viewer>
+</div>        
+    </mat-card-content>
+    <mat-card-footer class="footer-content">
+      <div class="left-side">
+        <mat-radio-group>
+          <mat-radio-button color="primary" value="Structured" checked>
+            <span class="radio-button-text">Structured</span>
+          </mat-radio-button>
+          <mat-radio-button
+            class="radio-text"
+            color="primary"
+            value="Unstructured">
+            <span class="radio-button-text">Unstructured</span>
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div>            
+      </div>
+       <div class="right-side">          
+        <div class="search-box">
+          <input class="search-input" matInput placeholder="type page no. " />
+        </div>
+         </div>
+         <button mat-raised-button class="convert-button" (click)="onConvert($event)">
+          <span class="btn-convert">Convert </span>
+        </button>
+
+    </mat-card-footer>
+  </mat-card>
+</div>
+  </div>
+</div>
+</div>
+</div>
+  
+

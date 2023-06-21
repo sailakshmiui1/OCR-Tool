@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+          <div class="header-content">
+      <h1 class="header-title">
+        Welcome to Optical Character Recognition(OCR)
+      </h1>
+      <h4 class="header-tile2">Convert Scanned Documents and Images into Editable Word, PdDF, Excel and Txt(Text) output formats</h4>
+    </div>
+        <div class="card-background">
+          <div style="height: 381px;">        
+          <mat-card class="drag-drop-card" style="border-radius: 16px;">
+            <mat-card-content class="mat-card-content">
+              <div class="upload-section">
+              <div class="upload-icon" 
+              ng2FileDrop
+					[ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+					(fileOver)="fileOverBase($event)"
+          (onFileDrop)="FileDrop()"          
+					[uploader]="uploader">
+                <img src="/assets/Images/upload.png" alt="image">
+              </div>
+                <div class="mat-content">                
+                  <h3 class="drag-drop-text">Drag & Drop or 
+                         <label class="choose-file-upload-text"  for="upload">Choose a file to Upload</label>
+                         <input hidden type="file" id="upload" ng2FileSelect [uploader]="uploader"   (onFileSelected)="onFileSelected($event)">                       
+                </h3>
+                  <h6 class="drag-drop-text2" style="color: #4E4E4E;">Supported file formats: PDF, JPG, JPEG, PNG, Word, Txt</h6>
+                </div>
+              </div>              
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>  
+    <div class="container-fluid">
+    <div class="row">  
+      <div class="col-xs-12 col-centered">    
+      <div class="fileloadedview" *ngFor="let item of uploader.queue" (click)="openDialog()">
+       <div class="fileimage"><img src="/assets/Images/filedoc.png" style="margin-top: 20px;"></div>
+        <div class="filename">         
+          <div>{{ item?.file?.name }}</div>
+          <div>	{{ item?.file?.size | number:'.2' }} KB</div>
+       </div>
+       <div class="removefile" (click)="item.remove()">
+        <img src="/assets/Images/Cross.png">
+       </div>
+       <div class="progressbar">             
+        <mat-progress-bar 
+               [value]="loadingPercent"               
+               mode="determinate" 
+               value="100%">
+        </mat-progress-bar>            
+       </div>
+       <div class="loadingpercent">
+        {{loadingPercent}}%
+       </div>
+      </div>
+    </div>
+    </div>
+  </div>
+      </div>
+       </div>
+       
+      
+       
+    

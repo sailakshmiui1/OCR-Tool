@@ -1,0 +1,125 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col">
+
+      <mat-card-content class="rectangle1860"></mat-card-content>
+
+      <div class="img1">
+        <img src="../assets/Images/Home.png" /><br />
+      </div>
+
+
+      <div class="col">
+        <iframe class="video" src="https://www.youtube.com/embed/1ozGKlOzEVc" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col">
+          <div>
+            <h1 class="goodmorning">Good Morning,</h1>
+          </div>
+          <div>
+            <h4 class="letus"> <br />Let us help you in conversion <br />of your files...</h4>
+          </div>
+
+          <div>
+            <p class="info"> <br />The primary purpose of an OCR is to
+              convert text on an image or printed document into machine-readable
+              information while making it searchable and editable.</p><br />
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col">
+          <section>
+            <form [formGroup]="SignupForm" #signUpForm="ngForm"(ngSubmit)="createUser()">
+              <div class="row">
+                <div class="col">
+                  <div class="form-outline">
+                    <label class="form-label" for="userName"> USERNAME<span
+                        style="color:red;">&nbsp;*</span></label><br />
+                    <mat-form-field appearance="outline" class="username-field">
+                      <input matInput type="text" id="userName" placeholder="Enter username"
+                        formControlName="username" />
+                      <mat-error *ngIf=" this.SignupForm.controls['username'].hasError('required')"> Username is
+                        required</mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-outline">
+                    <label class="form-label" for="userName"> E-MAIL<span
+                        style="color:red;">&nbsp;*</span></label><br />
+                    <mat-form-field appearance="outline" class="username-field">
+                      <input matInput type="text" id="email" placeholder="abc@gmail.com" formControlName="email" />
+                      <mat-error *ngIf="this.SignupForm.controls['email'].hasError('pattern')">Invalid
+                        E-Mail</mat-error>
+                      <mat-error *ngIf=" this.SignupForm.controls['email'].hasError('required')"> E-Mail is
+                        required</mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-outline">
+                    <label class="form-label">CREATE PASSWORD<span style="color:red;">&nbsp;*</span></label><br />
+                    <mat-form-field appearance="outline" class="username-field">
+                      <input matInput [type]="showPassword ? 'text':'password' " id="password" placeholder="password"
+                        formControlName="password" (paste)="(false)" (copy)="(false)" />
+                      <mat-icon matSuffix (click)="togglePasswordVisibility()">
+                        {{showPassword?'visibility':'visibility_off'}}
+                      </mat-icon>
+
+                      <mat-error *ngIf="this.SignupForm.controls['password'].hasError('required')"> Password is
+                        required</mat-error><br />
+                    </mat-form-field>
+                  </div>
+
+                </div>
+                <div class="col-md-6" *ngIf="this.SignupForm.controls['password'].hasError('pattern')">
+                  <mat-card>
+                    <mat-card-content>
+                      Password must contain
+                    </mat-card-content>
+                    <ul>
+                      <li>Minimum 6 characters.</li>
+                      <li>At least one upper case </li>
+                      <li>At least one special char(!#@$%*)</li>
+                      <li>At least one number(0-9)</li>
+                    </ul>
+                  </mat-card>
+                </div>
+
+              </div>
+              <br />
+              <div class="form-outline">
+                <label class="form-label"> PHONE NUMBER</label><br />
+                <mat-form-field appearance="outline" class="username-field">
+                  <ngx-mat-intl-tel-input formControlName="phone" [preferredCountries]="['de', 'us']"
+                    [enablePlaceholder]="true" [enableSearch]="true" name="phone" placeholder="Enter Phone Number"
+                    #phone>
+                  </ngx-mat-intl-tel-input>
+
+
+                </mat-form-field>
+              </div>
+              <br />
+
+              <div >
+                <button mat-raised-button class="buttons-class" color="primary">Create User&nbsp;&nbsp;&nbsp;</button>&nbsp;&nbsp;&nbsp;
+               
+                <button mat-raised-button class="buttons-class" color="primary" type="reset">Cancel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

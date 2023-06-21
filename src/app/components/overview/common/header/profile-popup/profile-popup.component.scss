@@ -1,0 +1,135 @@
+.profile-card {
+  width: 428px;
+  height: 405px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0px 10px 22px rgba(45, 77, 108, 0.15);
+  border-radius: 8px;
+
+  .first-div {
+    height: 90px;
+    background: #3158aa;
+    border-radius: 8px 8px 0px 0px;
+
+    mat-icon {
+      position: absolute;
+      top: 64px;
+      right: 10px;
+      color: #f1f1f1;
+      font-size: 15px;
+    }
+  }
+
+  .profile {
+    background-image: url("/assets/image/Face.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 54px;
+    left: 184px;
+  }
+
+  .profile-details {
+    text-align: center;
+    margin-top: 30px;
+
+    .name {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 24px;
+      color: #3158aa;
+    }
+
+    .email {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: 300;
+      font-size: 13px;
+      line-height: 24px;
+      color: #646464;
+    }
+  }
+
+  .icon-image {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    flex-wrap: wrap;
+
+    img {
+      margin: 0 5px;
+      cursor: pointer;
+     
+    }
+ 
+  }
+
+  .account-actions {
+    width: 400px;
+    height: 100px;
+    background: #effaff;
+    border: 1px solid rgba(49, 88, 170, 0.2);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 25px;
+    margin-left: 10px;
+
+    .add-account {
+      display: flex;
+      align-items: center;
+      margin-left: 25px;
+    }
+
+    .logout {
+      display: flex;
+      align-items: center;
+      margin-left: 25px;
+      margin-top: 15px;
+    }
+
+    .action-icon {
+      margin-right: 20px;
+      color: #646464;
+
+    }
+
+    .action-label {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 20px;
+      color: #4e4e4e;
+    }
+  }
+
+  .foot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+    .foot-text {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13px;
+      color: #4e4e4e;
+    }
+    .dot {
+      margin: 0 24px;
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: #646464;
+
+    }
+  }
+}

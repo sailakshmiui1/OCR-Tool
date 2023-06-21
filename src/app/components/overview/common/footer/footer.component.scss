@@ -1,0 +1,94 @@
+.footer {
+  background-color: #2F296A !important;
+  color: #FFFFFF;
+  position: relative;
+  bottom: 0px;
+}
+.imagewd{
+  width: 60%;
+}
+.p {
+  margin-top: revert !important;
+  color: #fff;
+}
+ul {
+  list-style: none;
+}
+
+.topfooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  margin-left: 66px;
+  margin-right: 66px;
+}
+.footer-top{
+padding-left: 40px;
+padding-right: 230px;
+}
+
+.footer-menu {
+  padding-top: 30px;
+}
+.footer-map {
+  padding-bottom: 40px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-left: 120px;
+}
+.float-end {
+  padding-left: 50px;
+}
+hr {
+  margin: 0px !important;
+}
+.sociallinks {
+  li{
+      display: inline-block;
+      margin: 0 5px;
+      a{
+          width: 46px;
+          height: 46px;
+          border-radius: 50%;
+          border: 1px solid white;
+          display: block;
+          padding: 8px 0;
+          position: relative;
+          @media screen and (max-width:1440px) {
+              padding: 5px 0;
+              width: 40px;
+              height: 40px;
+          }
+          @media screen and (max-width:1199px) {
+              width: 40px;
+              height: 40px;
+              padding: 5px 0;
+          }
+          @media screen and (max-width:767px) {
+              width: 34px;
+              height: 34px;
+          }
+          svg{
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%,-50%);
+              width: 20px;
+              fill: white;
+              @media screen and (max-width:1440px) {
+                  width: 18px;
+              }
+              @media screen and (max-width:767px) {
+                  width: 14px;
+              }
+          }
+          &:hover{
+              background: unset;
+              border-color: #fff;
+              svg{fill: blue(#000000);}
+          }
+      }
+  }
+  padding-right: 50px;
+}

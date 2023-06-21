@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-1">
+      <div class="enter-code-heading">
+        <h5>Enter 4-digits code</h5>
+      </div>
+
+      <div class="enter-code-text">
+        <p>Enter the 4-digit code that you received on your E-mail.</p>
+      </div>
+
+      <section>
+        <form [formGroup]="PassCodeForm" (ngSubmit)="Navigate()">
+          <div class="form-outline row">
+            <div class="col-md-3">
+              <mat-form-field appearance="outline" class="pass-code-input">
+                <!-- <input type="text" class="input" formControlName="passCode1" matInput #otpInput1 (input)="onOtpInput($event, otpInput1, otpInput2)" maxlength="1"> -->
+                <input type="text" class="input" formControlName="passCode1" matInput #otpInput1 (input)="onOtpInput($event, otpInput1, otpInput2, otpInput1)" maxlength="1">
+              </mat-form-field>
+            </div>
+            <div class="col-md-3">
+              <mat-form-field appearance="outline" class="pass-code-input">
+                <input type="text" class="input" formControlName="passCode2" matInput #otpInput2 (input)="onOtpInput($event, otpInput2, otpInput3, otpInput2)" maxlength="1">
+              </mat-form-field>
+            </div>
+            <div class="col-md-3">
+              <mat-form-field appearance="outline" class="pass-code-input">
+                <input type="text" class="input" formControlName="passCode3" matInput #otpInput3 (input)="onOtpInput($event, otpInput3, otpInput4, otpInput3)" maxlength="1">
+              </mat-form-field>
+            </div>
+            <div class="col-md-3">
+              <mat-form-field appearance="outline" class="pass-code-input">
+                <input type="text" class="input" formControlName="passCode4" matInput #otpInput4 (input)="onOtpInput($event, otpInput4, otpInput4, otpInput4)" maxlength="1">
+              </mat-form-field>
+            </div>
+          </div>          
+
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="resend-code-text">
+              if you didn't receive a code! <span class="resend-code-link">Resend</span>
+            </div>
+          </div>
+
+          <div>{{ remainingTime | date:'mm:ss' }}</div>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button mat-raised-button type="button" class="btn-lg verify-button" (click)="otpVerify()">Verify</button>
+          </div>
+          <button mat-icon-button mat-dialog-close class="close-button">
+            <mat-icon>close</mat-icon>
+          </button>
+        </form>
+      </section>
+    </div>
+  </div>
+</div>

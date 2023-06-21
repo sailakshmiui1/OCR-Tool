@@ -1,0 +1,66 @@
+<!-- <button (click)="item.upload()">get name</button> -->
+<div class="container-fluid">
+<div class="row">
+  <div class="col-md-12">
+    <mat-card class="preview-card mt-3" >
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon>arrow_backward </mat-icon> Back to preview
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="viewer-card-content" >
+        <div class="row">
+          <div class="col-md-6 h-100 pe-0">
+            <ngx-extended-pdf-viewer
+              [showToolbar]="true"
+              [showSidebarButton]="false"
+              [showFindButton]="false"
+              [showPagingButtons]="true"
+              [showDrawEditor]="false"
+              [showTextEditor]="false"
+              [showZoomButtons]="true"
+              [showPresentationModeButton]="false"
+              [showOpenFileButton]="false"
+              [showPrintButton]="false"
+              [showDownloadButton]="true"
+              [showSecondaryToolbarButton]="true"
+              [showRotateButton]="false"
+              [showHandToolButton]="false"
+              [showScrollingButton]="true"
+              [showSpreadButton]="false"
+              [showPropertiesButton]="false"
+              [src]="'assets/sample.pdf'"
+              [useBrowserLocale]="true"
+              [height]="'100%'"
+            >
+            </ngx-extended-pdf-viewer>
+          </div>
+          <div class="col-md-6 h-100 ps-0">
+            <ckeditor [editor]="Editor" [(ngModel)]="ckdata"></ckeditor>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions class="action-button-div">
+        <button class="float-end btn action-button">Save</button>
+        <button class="float-end btn action-button" (click)="openDialogWithTemplateRef(myDialog)">Export</button>
+
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
+
+</div>
+
+<!-- export preview dialog -->
+
+<ng-template #myDialog>
+  <h2 matDialogTitle>Preview</h2>
+  <mat-dialog-content [innerHtml]="ckdata">
+
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button color="primary" (click)="exportexcel()">Continue</button>
+    <button mat-button color="primary" matDialogClose>Cancel</button>
+  </mat-dialog-actions>
+</ng-template>

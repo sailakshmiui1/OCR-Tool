@@ -1,0 +1,65 @@
+
+.popup-container {
+  background: #ffffff;
+  border: 1px solid #bec3cd;
+  border-radius: 6px; 
+}
+.popup-header {  
+  align-items: center;
+  justify-content: space-between;
+}
+
+.popup-header .image-text {
+  display: flex;
+  align-items: center;
+}
+
+.image-text .home-image{
+width: 18.5px;
+height: 18.5px;
+}
+.popup-header .header-title {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight:500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #012d9e;
+  margin-left: 15px;
+  border-left: 1px solid #E2E2E2;
+}
+
+ .menu{
+ 
+   align-items: center;
+   color: #BEC3CD;
+   margin-right: -8px;
+}
+
+ .heading-text {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  color: #808995;
+
+}
+
+
+.data {   
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 24px;     
+    color: #808995;
+      }
+
+  .action-img{
+    margin-left: 7px; 
+  }
+
+  
+ 
+  
+  

@@ -1,0 +1,145 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+ /*You can add global styles to this file, and also import other style files */
+ @import '@angular/material/prebuilt-themes/indigo-pink.css';
+ @import 'material-icons/iconfont/material-icons.css';
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$cre_ocr-primary: mat.define-palette(mat.$indigo-palette);
+$cre_ocr-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$cre_ocr-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$cre_ocr-theme: mat.define-light-theme((
+  color: (
+    primary: $cre_ocr-primary,
+    accent: $cre_ocr-accent,
+    warn: $cre_ocr-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($cre_ocr-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mdc-linear-progress__bar{
+  display: none;
+}
+
+.example-button-row {
+    display: table-cell;
+    max-width: 600px;
+  }
+  a,
+a:hover{
+  text-decoration: none;
+}
+.mdc-text-field__input {
+    height: 28px !important;
+   border-radius: 10px;
+}
+
+.mat-mdc-form-field-infix {
+    min-height: 0px !important;
+    border-radius: 8px;
+}
+.mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    border-radius: 8px;
+}
+.mat-mdc-cell {
+  color: #646464;
+}
+.mat-sort-header-content {
+
+  color: #646464;
+
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+// style for pdf viewer
+
+ngx-extended-pdf-viewer
+{
+
+
+#toolbarViewer {
+  min-height: 34px !important;
+  padding-top: 5px;
+  border: 1px solid #ccced1;
+}
+
+
+}
+
+
+
+.ck-editor{
+  min-height: 600px !important;
+  max-width: 100% !important;
+}
+.ck-editor__editable_inline{
+  min-height: auto !important;
+}
+
+
+// OCR Warning toastr
+.toast-container .toast-warning {
+  background-color: #FDEAEE !important;
+  border-radius: 4px 4px 4px 4px;
+  background-image: url('/assets/Images/alertIcon.png');   
+}
+.warning-msg-toaster,.toast-warning .toast-title
+{
+ color: #FF0000 !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface
+{
+ overflow: hidden;
+}
+#viewerContainer,#mainContainer,#outerContainer,.html
+{
+  height: 70vh;
+}  
+ ngx-extended-pdf-viewer #outerContainer
+{
+   height: 70vh;
+}
+
+
+
+
+
+
+
+

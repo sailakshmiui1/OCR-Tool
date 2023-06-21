@@ -1,0 +1,109 @@
+<div class="container-fluid">
+  <div class="main">
+    <div class="row" style="margin-left: 20px; margin-right: 20px;">
+      <div class="col-md-6 rectangle-card">
+        <div class="img1">
+          <img class="img" src="assets/images/home.png" /><br />
+        </div>
+        <div style="align-items: center; margin: auto; padding-top: 60px; margin-left: 60px;">
+          <!-- <iframe class="video" src="https://www.youtube.com/embed/1ozGKlOzEVc" frameborder="0" allowfullscreen></iframe> -->
+          <button mat-raised-button color="" class="play-button">
+            <span class="button1">
+              <a href="https://www.youtube.com/embed/1ozGKlOzEVc" target="_blank">
+                <img class="videoimg" src="assets/images/play_circle.png" alt="">
+              </a>
+            </span>
+          </button>
+        </div>
+      </div>
+      <div class="col-md-6" style="padding-left: 118px; padding-top: 77px;">
+        <div class="row">
+          <div class="col-md-12">
+            <div>
+              <span class="loginform">Good Morning,</span>
+            </div>
+            <div class="col-md-8">
+              <p class="para">Let us help you in conversion of your files...</p>
+            </div>
+
+            <p class="paraText">The primary purpose of an OCR is to
+              convert text on an image or printed document into machine-readable
+              information while making it searchable and editable.</p>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <section>
+              <form [formGroup]="LoginForm" (ngSubmit)="userLogin()">
+                <div class="form-outline">
+                  <label class="form-label" for="userName">{{label.LOGIN_USERNAME}}<span style="color:red;">&nbsp;*</span></label><br />
+                  <mat-form-field appearance="outline" class="username-field">
+                    <input class="input" matInput type="text" id="userName" placeholder="Typed Value" formControlName="username" />
+                    <mat-error *ngIf="form['username'].touched && form['username'].errors?.['required']"> Username is required</mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="row form-outline password-field">
+                  <div class="col-md-12">
+                    <label class="form-label" for="password">{{label.LOGIN_PASSWORD}}<span style="color:red;">&nbsp;*</span></label><br />
+                    <mat-form-field appearance="outline">
+                      <input class="input" formControlName="password" matInput [type]="hide ? 'password' : 'text'" placeholder="Password">
+                      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>                        
+                      </button>
+                      <mat-error *ngIf="form['password'].touched && form['password'].errors?.['required']"> Password is
+                        required</mat-error><br />
+                    </mat-form-field>
+
+
+                  </div>
+                  <!-- Incorrect login start -->
+                  <div *ngIf="showError">
+                    <div class="card inccorect-card" [class.account-locked]="!incorrectPassword">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-2 img-sec">
+                            <img src="assets/images/Icon.png">
+                          </div>
+                          <div class="col-md-10">
+                            <div *ngIf="incorrectPassword; else accountLocked">
+                              <p class="incorrectl">Incorrect login</p>
+                              <p class="unpi">User name or Password is incorrect.</p>
+                              <p class="pta">Please Try again! <span class="attempts">(2 attempts left)</span></p>
+                              <div class="text-center text-sm-start mt-2">
+                                <button mat-raised-button type="button" class="btn btn-okay">Okay</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div> 
+                  </div>                 
+                <!-- Incorrect login end -->
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="forgotP" (click)="openDialog()">Forgot password?</div>
+                </div>
+
+                <div class="text-center text-lg-start mt-4 pt-2">
+                  <button mat-raised-button type="submit" class="btn-lg btnf">Login</button>
+                </div>
+
+              </form>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Account Locked Start -->
+<ng-template #accountLocked>
+  <p class="incorrectl">Account locked</p>
+  <p class="unpi account-desc">Sorry, your account has been locked
+    due to too many incorrect  attempts.Please contact your <span class="admin">Admin</span> to unlock the account.</p>
+</ng-template>
+<!-- Account Locked End -->

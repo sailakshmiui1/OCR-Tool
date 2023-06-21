@@ -1,0 +1,61 @@
+<div class="popup-container">
+  <mat-toolbar class="popup-header">
+    <div class="image-text">
+      <mat-icon style="color: #AFAFAF;" fontIcon="home" (click)="closeModal()"></mat-icon>      
+      <span class="header-title">Document converter</span>
+    </div>
+     <div class="spacer"></div>
+   <div class="menu">
+      <mat-icon class="menu-icon" >menu</mat-icon>
+    </div>
+
+  </mat-toolbar>
+  <div class="row">  
+    <div class="col">
+    <table mat-table [dataSource]="dataSource" class="table-content" >
+      
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+      <!-- FileName Column -->
+      <ng-container matColumnDef="name" >
+        <th mat-header-cell *matHeaderCellDef class="heading-text" > FileName </th>
+        <td mat-cell *matCellDef="let element" class="data"> {{element.filename}} </td>
+      </ng-container> 
+  
+     <!-- Date Column -->
+      <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef class="heading-text">  Date Modified </th>
+          <td mat-cell *matCellDef="let element" class="data"> {{ currentDate | date:'dd/MM/yyyy'  }} </td>
+        </ng-container>
+         <!-- Date Column -->
+    
+      
+      <!-- Type Column -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef class="heading-text"> Type </th>
+        <td mat-cell *matCellDef="let element" class="data"> {{element.type}} </td>
+      </ng-container>
+    
+      <!-- Size Column -->
+      <ng-container matColumnDef="size">
+        <th mat-header-cell *matHeaderCellDef class="heading-text"> Size </th>
+        <td mat-cell *matCellDef="let element" class="data"> {{element.size}} KB </td>
+      </ng-container>      
+     
+       <!-- Action Column -->
+       <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef class="heading-text"> Action </th>
+          <td mat-cell  *matCellDef="let element" class="data"> 
+            <img src="/assets/Images/Preview.png" class="action-img" (click)="openDialogBox(element.filename)" alt="">            
+            <img src="/assets/Images/Delete.png" class="action-img" (click)="removeData(element.id)" alt="">
+             </td>
+        </ng-container> 
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+  </div>
+  </div>
+</div>
+
