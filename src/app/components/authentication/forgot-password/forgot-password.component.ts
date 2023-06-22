@@ -42,8 +42,8 @@ export class ForgotPasswordComponent {
         this.authservice.resetpasswordSenderApi(this.ForgotPasswordForm.value.userName, result.access_token).subscribe((result:any) => {
           console.log(result);
           // if()
-          if(result.msg){
-            this.toastr.success(result.msg,'Continue', {
+          if(result.trans_id){
+            this.toastr.success("otp has sent email",'Continue', {
               positionClass: 'toast-top-right'
             });
           this.dialogRef.close();
@@ -60,7 +60,7 @@ export class ForgotPasswordComponent {
       const dialogRef = this.dialog.open(PassCodeComponent, {
         width: '540px',
         height: '390px',
-        data: {}
+        data: {userName: this.ForgotPasswordForm.value.userName}
       });
   
       dialogRef.afterClosed().subscribe(result => {

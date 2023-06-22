@@ -6,6 +6,7 @@ import { ResetPasswordComponent } from '../reset-password/reset-password.compone
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pass-code',
@@ -14,17 +15,19 @@ import { AuthServiceService } from 'src/app/service/auth-service.service';
 })
 export class PassCodeComponent {
 label = LabelConstants;
-  animal: any;
   PassCodeForm!: FormGroup;
-  remainingTime: number;
-  timerId: any;
+  remainingTime: number = 300;
+  timerSubscription: Subscription | undefined;
+  userName: any;
+
  constructor(private fb: FormBuilder,
   public dialogRef: MatDialogRef<PassCodeComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     public dialog: MatDialog, private authservice: AuthServiceService,
     private toastr: ToastrService
  ) {}
  ngOnInit(): void {
+  this.userName = this.data.userName;
   this.PassCodeForm = this.fb.group({
     passCode1: ['', [Validators.required]],
     passCode2: ['', [Validators.required]],
@@ -48,14 +51,7 @@ onOtpInput(event: any, currentInput: HTMLInputElement, nextInput: HTMLInputEleme
   }
 
 }
-// clearAllInputs(inputElement: HTMLInputElement) {
-//   const allInputs = document.querySelectorAll('input[type="text"]');
-//   allInputs.forEach((input: HTMLInputElement) => {
-//     if (input !== inputElement) {
-//       input.value = '';
-//     }
-//   });
-// }
+
 
  Navigate() {
   this.dialogRef.close();
@@ -70,69 +66,78 @@ onOtpInput(event: any, currentInput: HTMLInputElement, nextInput: HTMLInputEleme
   
   dialogRef.afterClosed().subscribe(result => {
     console.log('The dialog was closed');
-    this.animal = result;
   });
 }
 
-startTimer() {
-  this.remainingTime = 300; // 5 minutes in seconds
-  this.timerId = setTimeout(() => {
-    // Timer logic when time is up
-    // For example, display a message or perform any required action
-  }, this.remainingTime * 1000);
-
-  this.updateTimer();
-}
-
-updateTimer() {
-  this.timerId = setInterval(() => {
+startTimer(): void {
+  this.timerSubscription = interval(1000).subscribe(() => {
     this.remainingTime--;
-
-    if (this.remainingTime <= 0) {
-      clearInterval(this.timerId);
+    if (this.remainingTime === 0) {
+      this.stopTimer();
     }
-  }, 1000);
+  });
 }
 
-ngOnDestroy() {
-  clearTimeout(this.timerId);
-  clearInterval(this.timerId);
+stopTimer(): void {
+  if (this.timerSubscription) {
+    this.timerSubscription.unsubscribe();
+  }
 }
-// navigate() {    
-//    this.authservice.tokenGenerate().subscribe((result: any) => {
-//     console.log(result);
-//     this.authservice.resetpasswordSenderApi(this.PassCodeForm.value.userName, result.access_token).subscribe((result:any) => {
-//       console.log(result);
-//       if(result.msg){
-//         this.toastr.success(result.msg,'Continue', {
-//           positionClass: 'toast-top-right'
-//         });
-//       this.dialogRef.close();
-//       }       
-    
-//     },
-//     err=>console.log(err)
-//     );
-//   })
- 
-// }
-otpVerify(){
+
+formatTime(seconds: number): string {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return `${this.padZero(minutes)}:${this.padZero(remainingSeconds)}`;
+}
+
+padZero(value: number): string {
+  return value.toString().padStart(2, '0');
+}
+ngOnDestroy() {
+  this.stopTimer();
+}
+
+resendOtp() {     
+  if (this.userName) {
   this.authservice.tokenGenerate().subscribe((result: any) => {
     console.log(result);
-    this.authservice.otpVerificationApi(this.PassCodeForm.value.userName, result.access_token).subscribe((result:any) => {
-      console.log(result);
-      if(result.msg){
-        this.toastr.success(result.msg,'Verify', {
+    this.authservice.resetpasswordSenderApi(this.userName, result.access_token).subscribe((result:any) => {
+      if(result.trans_id){
+        this.toastr.success("otp sent to email-id",'Continue', {
           positionClass: 'toast-top-right'
         });
-      this.dialogRef.close();
-      }       
-    
+        this.remainingTime = 300;
+      }
     },
     err=>console.log(err)
     );
   })
 }
+}
 
+otpVerify(){
+  if (this.PassCodeForm.valid) {
+    const passCodeValues = Object.values(this.PassCodeForm.getRawValue());
+    const passCode = passCodeValues.join('');
+    this.authservice.tokenGenerate().subscribe((result: any) => {
+      console.log(result);
+      this.authservice.otpVerificationApi(passCode, result.access_token).subscribe((result:any) => {
+        console.log(result);
+        if(result.msg){
+          this.toastr.success(result.msg,'Verify', {
+            positionClass: 'toast-top-right'
+          });
+        this.dialogRef.close();
+        this.openDialog();
+        }       
+      
+      },
+      err=>console.log(err)
+      );
+    })
+  }
+  const passCodeValues = Object.values(this.PassCodeForm.getRawValue());
+    const passCode = passCodeValues.join('');  
+}
 
 }
