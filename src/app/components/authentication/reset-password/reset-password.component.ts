@@ -48,6 +48,38 @@ constructor(
 }
 
 
+
+// ngOnInit() {
+//   this.changePasswordForm = this.fb.group({
+//     currentPassword: ['', Validators.required],
+//     newPassword: ['', Validators.required],
+//     confirmPassword: ['', Validators.required]
+//   }, { validators: this.passwordMatchValidator });
+// }
+
+// changePassword() {
+//   if (this.changePasswordForm.invalid) {
+//     return;
+//   }
+
+//   // Code to call the password change API using a service
+//   // Pass the values: this.changePasswordForm.value.currentPassword, this.changePasswordForm.value.newPassword
+// }
+
+// passwordMatchValidator(formGroup: FormGroup) {
+//   const newPassword = formGroup.get('newPassword').value;
+//   const confirmPassword = formGroup.get('confirmPassword').value;
+
+//   if (newPassword !== confirmPassword) {
+//     formGroup.get('confirmPassword').setErrors({ passwordMismatch: true });
+//   } else {
+//     formGroup.get('confirmPassword').setErrors(null);
+//   }
+// }
+
+
+
+
 // // Initialize Userfront
 // Userfront.init("demo1234");
 
