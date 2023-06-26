@@ -19,6 +19,7 @@ label = LabelConstants;
   remainingTime: number = 300;
   timerSubscription: Subscription | undefined;
   userName: any;
+  trans_id: any;
 
  constructor(private fb: FormBuilder,
   public dialogRef: MatDialogRef<PassCodeComponent>,
@@ -28,6 +29,7 @@ label = LabelConstants;
  ) {}
  ngOnInit(): void {
   this.userName = this.data.userName;
+  this.trans_id = this.data.trans_id;
   this.PassCodeForm = this.fb.group({
     passCode1: ['', [Validators.required]],
     passCode2: ['', [Validators.required]],
@@ -117,11 +119,9 @@ resendOtp() {
 
 otpVerify(){
   if (this.PassCodeForm.valid) {
-    const passCodeValues = Object.values(this.PassCodeForm.getRawValue());
-    const passCode = passCodeValues.join('');
     this.authservice.tokenGenerate().subscribe((result: any) => {
       console.log(result);
-      this.authservice.otpVerificationApi(passCode, result.access_token).subscribe((result:any) => {
+      this.authservice.otpVerificationApi(passCode, this.trans_id, result.access_token).subscribe((result:any) => {
         console.log(result);
         if(result.msg){
           this.toastr.success(result.msg,'Verify', {
@@ -137,7 +137,7 @@ otpVerify(){
     })
   }
   const passCodeValues = Object.values(this.PassCodeForm.getRawValue());
-    const passCode = passCodeValues.join('');  
+    const passCode = passCodeValues.join(''); 
 }
 
 }

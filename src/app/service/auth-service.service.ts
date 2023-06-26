@@ -83,13 +83,14 @@ export class AuthServiceService {
     return this.http.post(`http://127.0.0.1:8000/silverskillscre/ocr/signin/reset_password_sender?email=${email}`, {headers: headers});
   }
 
-  otpVerificationApi(otp: any,token:any): Observable<any>{
-
+  otpVerificationApi(otp: any, transid: any, token:any,): Observable<any>{
+    console.log("trans_id ", transid, " :" , "otp" ,otp, ":",  token, ":")
+    let bodydata = ({"trans_id": transid, "otp": otp });
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/x-ww-form-urlencoded');
     headers.append('accept', 'application/json');
     headers.append('Authorization', `Bearer ${token}`)
-    return this.http.post(`http://127.0.0.1:8000/silverskillscre/ocr/signin/password_validation?otp=${otp}`, {headers: headers});
+    return this.http.post(`http://127.0.0.1:8000/silverskillscre/ocr/signin/password_validation?otp=${otp}`, bodydata, {headers: headers});
   }
   resetpasswordApi(token: any): Observable<any>{
   const headers = new HttpHeaders();

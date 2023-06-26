@@ -33,7 +33,6 @@ export class ForgotPasswordComponent {
 
     // get form() { return this.ForgotPasswordForm.controls; }
     navigate() {  
-      
       if (!this.ForgotPasswordForm.valid) {
         return;
       }
@@ -41,13 +40,12 @@ export class ForgotPasswordComponent {
         console.log(result);
         this.authservice.resetpasswordSenderApi(this.ForgotPasswordForm.value.userName, result.access_token).subscribe((result:any) => {
           console.log(result);
-          // if()
           if(result.trans_id){
             this.toastr.success("otp has sent email",'Continue', {
               positionClass: 'toast-top-right'
             });
-          this.dialogRef.close();
-          this.openDialog();
+            this.dialogRef.close();
+            this.openDialog(result.trans_id);
           }       
         
         },
@@ -56,11 +54,12 @@ export class ForgotPasswordComponent {
       })
      
     }
-    openDialog(): void {
+        
+    openDialog(transid): void {
       const dialogRef = this.dialog.open(PassCodeComponent, {
         width: '540px',
         height: '390px',
-        data: {userName: this.ForgotPasswordForm.value.userName}
+        data: {userName: this.ForgotPasswordForm.value.userName, trans_id: transid}
       });
   
       dialogRef.afterClosed().subscribe(result => {

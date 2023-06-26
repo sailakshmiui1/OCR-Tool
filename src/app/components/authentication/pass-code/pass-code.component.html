@@ -6,7 +6,7 @@
       </div>
 
       <div class="enter-code-text">
-        <p>Enter the 4-digit code that you received on your E-mail.</p>
+        <p>Enter the 4-digit code that you received on your E-mail id.</p>
       </div>
 
       <section>
@@ -37,11 +37,11 @@
 
           <div class="d-flex justify-content-between align-items-center">
             <div class="resend-code-text">
-              if you didn't receive a code! <span class="resend-code-link">Resend</span>
+              if you didn't receive a code! <span [ngClass]="remainingTime !== 0 ? 'resend-code-link-disabled' : 'resend-code-link'" (click)="resendOtp()">Resend</span>
             </div>
           </div>
 
-          <div>{{ remainingTime | date:'mm:ss' }}</div>
+          <div>Remaing Time: {{ formatTime(remainingTime) }}</div>
 
           <div class="text-center text-lg-start mt-4 pt-2">
             <button mat-raised-button type="button" class="btn-lg verify-button" (click)="otpVerify()">Verify</button>

@@ -38,6 +38,7 @@
           font-style: normal;
           font-weight: 400;
           font-size: 13px;
+          width: 400px;
         }
       }
 
@@ -59,6 +60,12 @@
               .resend-code-link {
                 color: #012d9e;
                 cursor: pointer;
+                font-size: 14px;
+                line-height: 15px;
+              }
+              .resend-code-link-disabled {
+                color: gray;
+                pointer-events: none;
                 font-size: 14px;
                 line-height: 15px;
               }
@@ -91,3 +98,7 @@
   top: 10px;
   right: 10px;
 }
+.mat-mdc-form-field-error{
+ margin-top: -18px;
+ margin-bottom: 5px;
+  }
