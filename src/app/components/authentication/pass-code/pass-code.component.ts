@@ -16,10 +16,28 @@ import { interval, Subscription } from 'rxjs';
 export class PassCodeComponent {
 label = LabelConstants;
   PassCodeForm!: FormGroup;
-  remainingTime: number = 300;
+  remainingTime: number = 30;
   timerSubscription: Subscription | undefined;
   userName: any;
   trans_id: any;
+  otp: number;
+  showOtpComponent = true;
+  config = {
+    allowNumbersOnly: false,
+    length: 4,
+    isPasswordInput: false,
+    disableAutoFocus: false,
+    placeholder: '',
+    inputStyles: {
+      'width': '40px',
+      'height': '45px',
+      'border-radius': '16px',
+      'outline': 'none',
+    'margin-bottom': '20px',
+    'margin-right': '28px',
+    'font-size': '22px'
+    }
+  };
 
  constructor(private fb: FormBuilder,
   public dialogRef: MatDialogRef<PassCodeComponent>,
@@ -30,40 +48,15 @@ label = LabelConstants;
  ngOnInit(): void {
   this.userName = this.data.userName;
   this.trans_id = this.data.trans_id;
-  this.PassCodeForm = this.fb.group({
-    passCode1: ['', [Validators.required]],
-    passCode2: ['', [Validators.required]],
-    passCode3: ['', [Validators.required]],
-    passCode4: ['', [Validators.required]]
-  });
   this.startTimer();
 
 }
-onOtpInput(event: any, currentInput: HTMLInputElement, nextInput: HTMLInputElement, previousInput: HTMLInputElement) {
-  const otpValue = currentInput.value;
-  const maxLength = parseInt(currentInput.getAttribute('maxlength') || '1', 10);
 
-  if (otpValue.length >= maxLength) {
-    nextInput.focus();
-  }
-    else if(event.inputType === 'deleteContentBackward' && otpValue.length === 0){
-    previousInput.focus();
-  } else if(otpValue.length >= maxLength){
-    previousInput.focus();
-  }
-
-}
-
-
- Navigate() {
-  this.dialogRef.close();
-  this.openDialog();
- }
  openDialog(): void {
   const dialogRef = this.dialog.open(ResetPasswordComponent, {
     width: '540px',
-    height: '510px',
-    data: {}
+    height: 'auto',
+    data: {userName: this.userName,}
   });
   
   dialogRef.afterClosed().subscribe(result => {
@@ -111,17 +104,23 @@ resendOtp() {
         this.remainingTime = 300;
       }
     },
-    err=>console.log(err)
+    err=>{
+      this.toastr.error(err?.error?.detail,'Try again', {
+        positionClass: 'toast-top-right'
+      });
+    }
     );
   })
 }
 }
 
 otpVerify(){
-  if (this.PassCodeForm.valid) {
+  // this.dialogRef.close();
+  //       this.openDialog();
+  if (this.otp.toString().length == 4) {
     this.authservice.tokenGenerate().subscribe((result: any) => {
       console.log(result);
-      this.authservice.otpVerificationApi(passCode, this.trans_id, result.access_token).subscribe((result:any) => {
+      this.authservice.otpVerificationApi(this.otp, this.trans_id, result.access_token).subscribe((result:any) => {
         console.log(result);
         if(result.msg){
           this.toastr.success(result.msg,'Verify', {
@@ -132,12 +131,18 @@ otpVerify(){
         }       
       
       },
-      err=>console.log(err)
+      err=>{
+        this.toastr.error(err?.error?.detail,'Try again', {
+          positionClass: 'toast-top-right'
+        });
+      }
       );
     })
   }
-  const passCodeValues = Object.values(this.PassCodeForm.getRawValue());
-    const passCode = passCodeValues.join(''); 
+}
+onOtpChange(otp) {
+  this.otp = otp;
+  console.log("Text is otp ", this.otp )
 }
 
 }

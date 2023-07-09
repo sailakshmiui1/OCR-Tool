@@ -50,6 +50,8 @@ import { PassCodeComponent } from './components/authentication/pass-code/pass-co
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { HttpClientModule } from '@angular/common/http';
+import { NgOtpInputModule } from 'ng-otp-input';
+// import { NgOtpInputComponent } from './components/authentication/ng-otp-input/ng-otp-input.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProfilePopupComponent,
     FooterBottomComponent,
     ResetPasswordComponent,
-    PassCodeComponent
+    PassCodeComponent,
+    // NgOtpInputComponent
 
   ],
   imports: [
@@ -109,7 +112,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatProgressBarModule,
     NgxExtendedPdfViewerModule,
     CKEditorModule,
-    HttpClientModule
+    HttpClientModule,
+    NgOtpInputModule
     ],
   providers: [],
   bootstrap: [AppComponent]

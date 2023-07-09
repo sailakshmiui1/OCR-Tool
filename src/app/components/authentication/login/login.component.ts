@@ -16,6 +16,7 @@ import { AuthServiceService } from 'src/app/service/auth-service.service';
 export interface DialogData {
   animal: string;
   name: string;
+  
 }
 @Component({
   selector: 'app-login',
@@ -32,6 +33,9 @@ export class LoginComponent implements OnInit {
   incorrectPassword: boolean = false;
   label = LabelConstants;
     animal: any;
+  userNameTF: string;
+  passWordTF: string;
+  totalAttempts: number = 5;
 constructor(private fb: FormBuilder, private dialog: MatDialog, private toastr: ToastrService, private authservice: AuthServiceService){
 }
 ngOnInit(): void {
@@ -45,8 +49,8 @@ get form() { return this.LoginForm.controls; }
 
 openDialog(): void {
   const dialogRef = this.dialog.open(ForgotPasswordComponent, {
-    width: '480px',
-    height: '410px',
+    width: '430px',
+    height: '400px',
     data: {}
   });
 
@@ -59,32 +63,67 @@ userLogin() {
   if (!this.LoginForm.valid) {
     return;
   }
+  
   this.authservice.tokenGenerate().subscribe((result: any) => {
     console.log(result);
-    this.authservice.loginApi(this.LoginForm.value, result.access_token).subscribe((result:any) => {
+    this.authservice.loginKeycloak(this.LoginForm.value, result.access_token).subscribe((result:any) => {
       console.log(result);
-      if(result.Errors){
-        this.toastr.error(result.Errors,'Login', {
-          positionClass: 'toast-top-right'
-        });
-      }
-      else{
-        this.toastr.success(result.msg,'Login', {
-          positionClass: 'toast-top-right'
-        });
-      }
       
-    
-    },
-    err=>console.log(err)
-    );
-  })
-  
-  
+      this.authservice.loginApi(this.LoginForm.value, result.access_token).subscribe((result:any) => {
+        console.log(result);
+        if(result.user){
+        this.authservice.setUserDetails(result.user)
+       }
+       console.log(this.authservice.getUserDetails().name)
+        if (result.Errors) {
+          this.toastr.error(result.Errors,'Login', {
+            positionClass: 'toast-top-right'
+          });
+        } else {
+          this.toastr.success(result.message,'Login', {
+            positionClass: 'toast-top-right'
+          });
+        }
+      }, (error) => {
+        console.log(error);
+        this.toastr.error(error?.error,'Try again', {
+          positionClass: 'toast-top-right'
+        });
+      });
+    }, (error) => {
+      console.log(error);
+      this.toastr.error(error?.error?.error_description, error?.error?.error, {
+        positionClass: 'toast-top-right'
+      });
+    });
+  }, (error) => {
+    console.log(error);
+    this.toastr.error(error?.error?.error_description, error?.error?.error, {
+      positionClass: 'toast-top-right'
+    });
+  });
 }
 
 public togglePasswordVisibility(): void {
   this.showPassword = !this.showPassword;
 }
+
+
+executeLogin(): void {
+  const userNameStr: string = this.userNameTF;
+  const passWordStr: string = this.passWordTF;
+
+  if (this.totalAttempts !== 0) {
+    if (userNameStr === "temp" && passWordStr === "pass") {
+      console.log("Correct");
+    } else {
+      console.log("Incorrect");
+      this.totalAttempts--;
+    }
+  } else {
+    console.log("Maximum number of attempts exceeded");
+  }
+}
+
 }
 

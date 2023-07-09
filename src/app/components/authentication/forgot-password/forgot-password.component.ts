@@ -33,6 +33,8 @@ export class ForgotPasswordComponent {
 
     // get form() { return this.ForgotPasswordForm.controls; }
     navigate() {  
+      // this.dialogRef.close();
+      // this.openDialog("this is dailogue");
       if (!this.ForgotPasswordForm.valid) {
         return;
       }
@@ -49,15 +51,18 @@ export class ForgotPasswordComponent {
           }       
         
         },
-        err=>console.log(err)
+        err=>{
+          this.toastr.error(err?.error?.detail,'Try again', {
+            positionClass: 'toast-top-right'
+          });
+        }
         );
       })
      
     }
-        
     openDialog(transid): void {
       const dialogRef = this.dialog.open(PassCodeComponent, {
-        width: '540px',
+        width: '450px',
         height: '390px',
         data: {userName: this.ForgotPasswordForm.value.userName, trans_id: transid}
       });

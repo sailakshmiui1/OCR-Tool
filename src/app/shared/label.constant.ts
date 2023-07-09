@@ -1,6 +1,6 @@
 export class LabelConstants {
-public static readonly LOGIN_USERNAME = 'Username';
-public static readonly LOGIN_PASSWORD = 'Password';
+public static readonly LOGIN_USERNAME = 'USER NAME';
+public static readonly LOGIN_PASSWORD = 'PASSWORD';
 public static readonly LOGIN_USERNAME1 = 'USER NAME';
 public static readonly LOGIN_PASSWORD1 = 'PASSWORD';
 public static readonly LOGIN_LOGIN = 'Login';

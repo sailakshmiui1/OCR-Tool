@@ -135,10 +135,35 @@ ngx-extended-pdf-viewer
 {
    height: 70vh;
 }
+body{
+  background-color: darkblue;
+}
 
 
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .loginform {font-size: 12px;}
+}
 
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  body {background: green;}
+}
 
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  body {background: blue;}
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  body {background: orange;}
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  body {background: pink;}
+}
 
 
 

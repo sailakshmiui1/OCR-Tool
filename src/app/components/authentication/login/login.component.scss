@@ -23,17 +23,12 @@ font-variation-settings:
 'opsz' 48
 }
 .container-fluid {
-padding: 17px 32px 32px 24px;
-height: 90vh;
+// padding: 17px 32px 32px 24px;
+height:100vh;
 }
 .rectangle-card {
-left: 0%;
-right: 0%;
-top: 0%;
-background-color: #FBFBFB !important;
-border-radius: 16px;
+
 padding-top: 54px;
-padding-bottom: 90px;
 padding-left: 80px;
 }
 .loginform{
@@ -55,9 +50,9 @@ color: #012d9e;
 margin-top: 25px;
 }
 .main{
-background-color: #fff; 
-padding: 30px 200px; 
-border-radius: 8px;
+background-color: #688EA7; 
+// padding: 30px 200px; 
+// border-radius: 8px;
 height: 100%;
 }
 .img{
@@ -81,10 +76,14 @@ height: 56px;
 background: #365FB5 !important;
 border-radius: 8px;
 color: #fff !important;
+font-size: 17px;
+font-weight: 500;
 }
 .forgotP{
 color: #012d9e; 
 cursor: pointer;
+font-weight: 500;
+font-size: 14px;
 }
 .paraText{
 color: #94A3B8; 
@@ -178,3 +177,13 @@ height: 96px;
   }
 }
 }
+.labeltxt{
+  font-weight: 400;
+  font-size: 16px;
+}
+
+// @media only screen and (max-width: 390px) {
+//   .loginform{
+//   font-size: 12px;
+//   }
+// }
